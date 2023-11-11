@@ -1,0 +1,15 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+    <Include file="embeds.xml"/>
+    <Script file="PlatesClasses.lua"/>
+    
+    <Script file="Utils\DbConfig.lua"/>
+    <Script file="Utils\Iterator.lua"/>
+    <Script file="Utils\ClassIcon.lua"/>
+    <Script file="Utils\Helpers.lua"/>
+    <Script file="Utils\NameRecognizer.lua"/>
+    
+    <Include file="modules\Cache\Cache.xml"/>
+    <Include file="modules\PlateStyle\PlatesStyle.xml"/>
+    <Include file="modules\ClassIcon\ClassIcon.xml"/>
+    <Include file="modules\AggroIcon\AggroIcon.xml"/>
+</Ui>
