@@ -2,7 +2,7 @@ local moduleName = "PlatesClasses Pet icons"
 local displayName = "Pets"
 local AceAddon = LibStub("AceAddon-3.0");
 local LibLogger = LibStub("LibLogger-1.0");
-local LibNameplate = LibStub("LibNameplate-1.0");
+local NAME_PLATE_LIB = LibStub("LibNameplate-1.0");
 
 local addon = AceAddon:GetAddon("PlatesClasses");
 local module = addon:NewModule(moduleName);

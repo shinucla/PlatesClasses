@@ -1,7 +1,7 @@
 local moduleName = "MouseOvered"
 local AceAddon = LibStub("AceAddon-3.0");
 local LibLogger = LibStub("LibLogger-1.0");
-local LibNameplate = LibStub("LibNameplate-1.0");
+local NAME_PLATE_LIB = LibStub("LibNameplate-1.0");
 local AceTimer = LibStub("AceTimer-3.0");
 local LibEvents = LibStub("LibEvents-1.0");
 
@@ -80,7 +80,7 @@ function events:UPDATE_MOUSEOVER_UNIT()
 	if self.db.Enabled then
 		if UnitExists("mouseover") then
 			local unitName = UnitName("mouseover");
-			local nameplate = LibNameplate:GetNameplateByName(unitName);
+			local nameplate = NAME_PLATE_LIB:GetNameplateByName(unitName);
 			if nameplate ~= nil then
 				self:OnPlateMouseEnter(nameplate);
 			else
@@ -103,7 +103,7 @@ function module:OnPlateMouseLeave(nameplate)
 end
 
 function module:OnPlateMouseCheckTimerTick(nameplate)
-	if not UnitExists("mouseover") or (UnitName("mouseover") ~= LibNameplate:GetName(nameplate)) then 
+	if not UnitExists("mouseover") or (UnitName("mouseover") ~= NAME_PLATE_LIB:GetName(nameplate)) then 
 		AceTimer:CancelTimer(self.timer)
 		self:OnPlateMouseLeave(nameplate);
 	end

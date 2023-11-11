@@ -2,7 +2,7 @@ local moduleName = "PlatesClasses"
 local AceAddon = LibStub("AceAddon-3.0");
 local LibLogger = LibStub("LibLogger-1.0");
 local LibEvents = LibStub("LibEvents-1.0");
-local LibNameplate = LibStub("LibNameplate-1.0");
+local NAME_PLATE_LIB = LibStub("LibNameplate-1.0");
 
 local addon = AceAddon:GetAddon("PlatesClasses");
 local displayName = "Players";
@@ -63,7 +63,7 @@ function module:OnNameplateUpdating(eventName, nameplate, fastUpdate, name, unit
 		if not fastUpdate then
 			local playerClasses = addon:GetStorage(self);
 			
-			local name = LibNameplate:GetName(nameplate);
+			local name = NAME_PLATE_LIB:GetName(nameplate);
 			local metadata = self:GetMetadata(nameplate, unitId);
 			
 			if metadata.class == nil then
@@ -110,8 +110,8 @@ function module:GetMetadata(nameplate, unitId)
 		metadata = {class = unifiedClass, isPlayer = isPlayer, isHostile = isHostile}
 	elseif nameplate ~= nil then
 		local class, isHostile, isPlayer;
-		class = LibNameplate:GetClass(nameplate);
-		local reaction, unitType = LibNameplate:GetReaction(nameplate);
+		class = NAME_PLATE_LIB:GetClass(nameplate);
+		local reaction, unitType = NAME_PLATE_LIB:GetReaction(nameplate);
 		isPlayer = nil;
 		if unitType == "PLAYER" then
 			isPlayer = true;
@@ -139,7 +139,7 @@ function module:UpdateBorderColor(nameplateFrame)
 	local r,g,b,a = 0,0,0,1;
 	
 	if nameplateFrame.FollowNameplateColor then
-		local hpBar = LibNameplate:GetHealthBar(nameplate);
+		local hpBar = NAME_PLATE_LIB:GetHealthBar(nameplate);
 		if hpBar and hpBar.GetStatusBarColor then
 			r,g,b,a = hpBar:GetStatusBarColor()
 		end

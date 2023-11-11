@@ -11,7 +11,7 @@ local AceConfigDialog = LibStub("AceConfigDialog-3.0");
 local LibEvents = LibStub("LibEvents-1.0");
 local LibLogger = LibStub("LibLogger-1.0");
 local CallbackHandler = LibStub("CallbackHandler-1.0");
-local LibNameplate = LibStub("LibNameplate-1.0");
+local NAME_PLATE_LIB = LibStub("LibNameplate-1.0");
 local AceTimer = LibStub("AceTimer-3.0");
 
 local addon = AceAddon:NewAddon(ADDON_NAME, "AceConsole-3.0");
@@ -156,9 +156,9 @@ function addon:OnEnable()
 		self.Initialized = true;
 	end
 	
-	LibNameplate.RegisterCallback(self, "LibNameplate_NewNameplate", function(event, ...) self:OnNameplateCreated(...) end)
-	LibNameplate.RegisterCallback(self, "LibNameplate_FoundGUID", function(event, ...) self:OnNameplateDiscoveredGuid(...) end )
-	LibNameplate.RegisterCallback(self, "LibNameplate_RecycleNameplate", function(event, ...) self:OnNameplateRecycled(...) end )
+	NAME_PLATE_LIB.RegisterCallback(self, "LibNameplate_NewNameplate", function(event, ...) self:OnNameplateCreated(...) end)
+	NAME_PLATE_LIB.RegisterCallback(self, "LibNameplate_FoundGUID", function(event, ...) self:OnNameplateDiscoveredGuid(...) end )
+	NAME_PLATE_LIB.RegisterCallback(self, "LibNameplate_RecycleNameplate", function(event, ...) self:OnNameplateRecycled(...) end )
 	
 	self.timer = AceTimer:ScheduleRepeatingTimer(function() self:UpdateNameplates(true) end, self.db.UpdateFrequency);
 	
@@ -169,7 +169,7 @@ function addon:OnDisable()
 	if self.timer ~= nil then
 		AceTimer:CancelTimer(self.timer);
 	end
-	LibNameplate.UnregisterAllCallbacks(self);
+	NAME_PLATE_LIB.UnregisterAllCallbacks(self);
 	
 	self:UpdateNameplates();
 end
@@ -256,7 +256,7 @@ function addon:OnNameplateRecycled(nameplate)
 end
 
 function addon:OnNameplateDiscoveredGuid(nameplate, GUID, unitId)
-	local name = LibNameplate:GetName(nameplate);
+	local name = NAME_PLATE_LIB:GetName(nameplate);
 	self:UpdateNameplate(nameplate, false, name, unitId);
 end
 
@@ -266,11 +266,11 @@ function addon:UpdateNameplate(nameplateOrName, fastUpdate, name, unitId)
 	end
 	
 	if type(nameplateOrName) == "string" then
-		nameplateOrName = LibNameplate:GetNameplateByName(nameplateOrName);
+		nameplateOrName = NAME_PLATE_LIB:GetNameplateByName(nameplateOrName);
 	end
 	
 	if name == nil and nameplateOrName ~= nil then
-		name = LibNameplate:GetName(nameplateOrName);
+		name = NAME_PLATE_LIB:GetName(nameplateOrName);
 	end
 	
 	if nameplateOrName ~= nil then
@@ -280,7 +280,7 @@ function addon:UpdateNameplate(nameplateOrName, fastUpdate, name, unitId)
 end
 
 function addon:UpdateNameplateAppearence(nameplate, fastUpdate)
-	local name = LibNameplate:GetName(nameplate);
+	local name = NAME_PLATE_LIB:GetName(nameplate);
 	log(90, "Updating nameplate appearence for '", name, "'")
 	addon.callbacks:Fire("OnNameplateAppearenceUpdating", nameplate, fastUpdate, name);
 end
@@ -295,7 +295,7 @@ function addon:UpdateNameplates(fastUpdate)
 end
 
 function addon:GetVisibleNameplates()
-	local nameplatesList = {LibNameplate:GetAllNameplates()};
+	local nameplatesList = {NAME_PLATE_LIB:GetAllNameplates()};
 	local result = {}
 	for i = 2, nameplatesList[1]+1 do
 		local nameplate = nameplatesList[i];

@@ -1,7 +1,7 @@
 local moduleName = "Plate Styler"
 local AceAddon = LibStub("AceAddon-3.0");
 local LibLogger = LibStub("LibLogger-1.0");
-local LibNameplate = LibStub("LibNameplate-1.0");
+local NAME_PLATE_LIB = LibStub("LibNameplate-1.0");
 
 local addon = AceAddon:GetAddon("PlatesClasses");
 local module = addon:NewModule(moduleName);
@@ -33,7 +33,7 @@ end
 
 function module:OnDisable()
 	addon.UnregisterAllCallbacks(self);
-	LibNameplate.UnregisterAllCallbacks(self)
+	NAME_PLATE_LIB.UnregisterAllCallbacks(self)
 	self:StyleAllNameplates();
 end
 
@@ -66,22 +66,22 @@ function module:StyleNameplate(nameplate, settings)
 	if nameplate ~= nil then
 		if not self:IsEnabled() then settings = defaultSettings end
 		
-		local name = LibNameplate:GetName(nameplate);
+		local name = NAME_PLATE_LIB:GetName(nameplate);
 		
 		settings = settings or self:GetSettings(nameplate, name) or defaultSettings;
 		
 		local allRegions = {nameplate:GetRegions()};
 		
-		local levelRegion = LibNameplate:GetLevelRegion(nameplate);
+		local levelRegion = NAME_PLATE_LIB:GetLevelRegion(nameplate);
 		Utils:SetVisible(levelRegion, settings.DisplayLevel);
 		
-		local nameRegion = LibNameplate:GetNameRegion(nameplate);
+		local nameRegion = NAME_PLATE_LIB:GetNameRegion(nameplate);
 		Utils:SetVisible(nameRegion, settings.DisplayName);
 		
-		local raidIconRegion = LibNameplate:GetRaidIconRegion(nameplate);
+		local raidIconRegion = NAME_PLATE_LIB:GetRaidIconRegion(nameplate);
 		Utils:SetVisible(raidIconRegion, settings.DisplayRaidIcon, 1);
 		
-		local healthBarRegion = LibNameplate:GetHealthBar(nameplate);
+		local healthBarRegion = NAME_PLATE_LIB:GetHealthBar(nameplate);
 		Utils:SetVisible(healthBarRegion, settings.DisplayHpBar, 1);
 		
 		local borderRegion = allRegions[2];
@@ -89,7 +89,7 @@ function module:StyleNameplate(nameplate, settings)
 			Utils:SetVisible(borderRegion, settings.DisplayBorder, 1);
 		end
 		
-		local highlightRegion = LibNameplate:GetHightlightRegion(nameplate)
+		local highlightRegion = NAME_PLATE_LIB:GetHightlightRegion(nameplate)
 		Utils:SetVisible(highlightRegion, settings.DisplayHighlight, 1)
 	end
 end

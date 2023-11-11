@@ -4,7 +4,7 @@ local displayName = "Aggro"
 local AceAddon = LibStub("AceAddon-3.0");
 local LibLogger = LibStub("LibLogger-1.0");
 local LibEvents = LibStub("LibEvents-1.0");
-local LibNameplate = LibStub("LibNameplate-1.0");
+local NAME_PLATE_LIB = LibStub("LibNameplate-1.0");
 local AceTimer = LibStub("AceTimer-3.0");
 
 local addon = AceAddon:GetAddon("PlatesClasses");

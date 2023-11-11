@@ -1,7 +1,7 @@
 local moduleName = "Targeted"
 local AceAddon = LibStub("AceAddon-3.0");
 local LibLogger = LibStub("LibLogger-1.0");
-local LibNameplate = LibStub("LibNameplate-1.0");
+local NAME_PLATE_LIB = LibStub("LibNameplate-1.0");
 local AceTimer = LibStub("AceTimer-3.0");
 local LibEvents = LibStub("LibEvents-1.0");
 
@@ -58,7 +58,7 @@ function events:PLAYER_TARGET_CHANGED()
 		local currentTargetsNameplate
 		local newTargetUnitName = UnitName("target")
 		if newTargetUnitName then
-			currentTargetsNameplate = LibNameplate:GetNameplateByName(newTargetUnitName);
+			currentTargetsNameplate = NAME_PLATE_LIB:GetNameplateByName(newTargetUnitName);
 			if currentTargetsNameplate ~= nil then
 				parent:StyleNameplate(currentTargetsNameplate)
 			else
